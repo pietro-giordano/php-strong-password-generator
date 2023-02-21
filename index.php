@@ -12,30 +12,22 @@
 <body>
 
       <div class="container">
-            <div class="row">
-                  <div class="col text-center">
+            <div class="row d-flex justify-content-center text-center">
+                  <div class="col-4">
 
                         <h1>Password Generator</h1>
 
-                        <p>Inserisci numero di caratteri su cui creare una password.</p>
-
                         <form action="" method="GET">
-                              <input type="number" name="numberOfCharacter" id="numberOfCharacter">
-                              <button type="submit">Crea</button>
+                              <label for="numberOfCharacter" class="form-label">Inserisci lunghezza password da generare</label>
+                              <div class="d-flex">
+                                    <input type="number" class="form-control" name="numberOfCharacter" id="numberOfCharacter">
+                                    <button type="submit" class="btn btn-primary ms-3">Crea</button>
+                              </div>
                         </form>
 
-                        <p>
+                        <p class="text-danger fs-1">
                               <?php
-                              function randomPassword()
-                              {
-                                    $characther = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890!£$%&?=-_';
-                                    $password = [];
-                                    for ($i = 0; $i < $_GET['numberOfCharacter']; $i++) {
-                                          $n = rand(0, strlen($characther) - 1);
-                                          $password[] = $characther[$n];
-                                    }
-                                    return implode($password);
-                              }
+                              include __DIR__ . '/function.php';
                               echo randomPassword();
                               ?>
                         </p>
