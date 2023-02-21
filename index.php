@@ -1,3 +1,9 @@
+<?php
+
+session_start();
+
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -25,13 +31,19 @@
                               </div>
                         </form>
 
-                        <p class="text-danger fs-1">
-                              <?php
-                              include __DIR__ . '/function.php';
-                              echo randomPassword();
-                              ?>
-                        </p>
+                        <?php
+                        if (isset($_GET['numberOfCharacter'])) {
+                              if ($_GET['numberOfCharacter'] != '') {
 
+                                    include __DIR__ . '/function.php';
+                                    $_SESSION['password'] = randomPassword();
+                                    header('Location: ./password.php');
+                              } else {
+
+                                    echo '<p>Inserire un valore</p>';
+                              }
+                        }
+                        ?>
                   </div>
             </div>
       </div>
