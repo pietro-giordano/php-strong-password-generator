@@ -24,23 +24,43 @@ session_start();
                         <h1>Password Generator</h1>
 
                         <form action="" method="GET">
-                              <label for="numberOfCharacter" class="form-label">Inserisci lunghezza password da generare</label>
-                              <div class="d-flex">
+                              <div>
+                                    <label for="numberOfCharacter" class="form-label">Inserisci lunghezza password da generare</label>
                                     <input type="number" class="form-control" name="numberOfCharacter" id="numberOfCharacter">
-                                    <button type="submit" class="btn btn-primary ms-3">Crea</button>
                               </div>
+
+                              <div class="mt-3">
+                                    <div>Selezionare caratteri con cui formare la password</div>
+
+                                    <div>
+                                          <input class="form-check-input" type="checkbox" value="1" id="character" name="characters">
+                                          <label class="form-check-label" for="character">Lettere</label>
+                                    </div>
+
+                                    <div>
+                                          <input class="form-check-input" type="checkbox" value="1" id="number" name="numbers">
+                                          <label class="form-check-label" for="number">Numeri</label>
+                                    </div>
+
+                                    <div>
+                                          <input class="form-check-input" type="checkbox" value="1" id="specialCharacter" name="specialCharacters">
+                                          <label class="form-check-label" for="specialCharacter">Caratteri speciali</label>
+                                    </div>
+                              </div>
+
+                              <button type="submit" class="btn btn-primary mt-4">Crea</button>
                         </form>
 
                         <?php
                         if (isset($_GET['numberOfCharacter'])) {
-                              if ($_GET['numberOfCharacter'] != '') {
+                              if ($_GET['numberOfCharacter'] != '' && (isset($_GET['characters']) || isset($_GET['numbers']) || isset($_GET['specialCharacters']))) {
 
                                     include __DIR__ . '/function.php';
                                     $_SESSION['password'] = randomPassword();
                                     header('Location: ./password.php');
                               } else {
 
-                                    echo '<p>Inserire un valore</p>';
+                                    echo '<p class="mt-4 fs-3 text-danger">Valore mancante</p>';
                               }
                         }
                         ?>

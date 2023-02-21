@@ -20,7 +20,9 @@ session_start();
       <div class="container">
             <div class="row">
                   <div class="col text-center">
-                        <p class="text-danger fs-1">
+                        <h2>Generated password</h2>
+
+                        <p class="text-success-emphasis fs-1">
                               <?php
                               echo $_SESSION['password'];
                               ?>
